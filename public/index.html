@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HostYourHTML</title>
+</head>
+<body>
+  <h1>HostYourHTML</h1>
+  <p>host your html because you can. just don’t be offensive.</p>
+
+  <h2>API Docs</h2>
+  <p>Here’s how you use the API:</p>
+  <ul>
+    <li><a href="#make-html">/api/makeyourhtml</a> - Create new HTML.</li>
+    <li><a href="#edit-html">/api/edityourhtml</a> - Edit existing HTML.</li>
+    <li><a href="#delete-html">/api/deleteyourhtml</a> - Delete HTML.</li>
+    <li><a href="#search-html">/api/searchthehtmls</a> - Search HTMLs.</li>
+  </ul>
+
+  <hr>
+
+  <section id="make-html">
+    <h2>/api/makeyourhtml</h2>
+    <form method="POST" action="/api/makeyourhtml">
+      <textarea name="html" placeholder="Enter your HTML here..." rows="5" cols="30"></textarea><br>
+      <button type="submit">Create HTML</button>
+    </form>
+  </section>
+
+  <hr>
+
+  <section id="edit-html">
+    <h2>/api/edityourhtml</h2>
+    <form method="POST" action="/api/edityourhtml">
+      <input type="text" name="id" placeholder="HTML ID" required><br>
+      <input type="text" name="editKey" placeholder="Edit Key" required><br>
+      <textarea name="html" placeholder="Enter new HTML here..." rows="5" cols="30" required></textarea><br>
+      <button type="submit">Edit HTML</button>
+    </form>
+  </section>
+
+  <hr>
+
+  <section id="delete-html">
+    <h2>/api/deleteyourhtml</h2>
+    <form method="POST" action="/api/deleteyourhtml">
+      <input type="text" name="id" placeholder="HTML ID" required><br>
+      <input type="text" name="editKey" placeholder="Edit Key" required><br>
+      <button type="submit">Delete HTML</button>
+    </form>
+  </section>
+
+  <hr>
+
+  <section id="search-html">
+    <h2>/api/searchthehtmls</h2>
+    <form method="GET" action="/search-results">
+      <input type="text" name="query" placeholder="Search query..." required><br>
+      <button type="submit">Search HTMLs</button>
+    </form>
+  </section>
+
+  <hr>
+</body>
+</html>
