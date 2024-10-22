@@ -69,8 +69,8 @@ app.delete('/api/deleteyourhtml', async (req, res) => {
   res.send({ success: true, message: 'HTML deleted successfully' });
 });
 
-app.get('/api/searchthehtmls', async (req, res) => {
-  const { query } = req.query;
+app.post('/api/searchthehtmls', async (req, res) => {
+  const { query } = req.body;
   if (!query) return res.status(400).send({ error: 'Search query is required' });
 
   const snapshot = await db.collection('htmls').get();
@@ -78,7 +78,7 @@ app.get('/api/searchthehtmls', async (req, res) => {
     .filter(doc => doc.data().html.includes(query))
     .map(doc => ({ id: doc.id, html: doc.data().html }));
 
-  res.render('search-results', { query, results });
+  res.send({ results });
 });
 
 app.get('/html/:id', async (req, res) => {
