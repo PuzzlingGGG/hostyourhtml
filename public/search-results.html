@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results - HostYourHTML</title>
+</head>
+<body>
+  <h1>Search Results</h1>
+
+  <div id="results">
+    <p>Searching...</p>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const params = new URLSearchParams(window.location.search);
+      const query = params.get('query');
+
+      const response = await fetch(`/api/searchthehtmls?query=${encodeURIComponent(query)}`);
+      const data = await response.json();
+
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = '';
+
+      if (data.results.length > 0) {
+        data.results.forEach(result => {
+          const link = document.createElement('a');
+          link.href = `/html/${result.id}`;
+          link.textContent = `View HTML: /html/${result.id}`;
+          link.target = '_blank';
+
+          const htmlPreview = document.createElement('pre');
+          htmlPreview.textContent = result.html;
+
+          resultsDiv.appendChild(link);
+          resultsDiv.appendChild(htmlPreview);
+          resultsDiv.appendChild(document.createElement('hr'));
+        });
+      } else {
+        resultsDiv.innerHTML = '<p>No results found.</p>';
+      }
+    });
+  </script>
+</body>
+</html>
